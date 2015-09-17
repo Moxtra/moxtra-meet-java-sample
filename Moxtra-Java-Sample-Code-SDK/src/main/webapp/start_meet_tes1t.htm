@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <!-- Include Moxtra JavaScript Library -->
+        <script type="text/javascript" charset="utf-8" src="https://www.moxtra.com/api/js/jquery-1.8.1.min.js"></script>
+        <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs"></script>
+        
+        <!-- Authenticate/Initialize and get the "Access Token" for the user -->
+        <!-- Refer to the doc at https://developer.moxtra.com/docs/docs-oauth/#uniqueid to authenticate user based on UniqueID Method -->
+        <!-- For other authentication methods and overview refer to the doc at https://developer.moxtra.com/docs/docs-authentication/ -->
+        <!-- In this example user is authenticated and access token is passed as a URL parameter -->
+        <script type="text/javascript" >
+
+          
+ 
+            var session_key,
+                session_id;    
+           var access_token;//="oHkzMgAAAU_SQXi3AACowFVIeEFXWHlkYVk4MXN2cFNodlVGUVIxIAAAAANUVEdQc1BQYVoySzd2Zkd6akZGaDdpQ2xSUmRsNV9oRGxV";
+
+    getToken = function()
+    {
+           var uniqueid = "ratio" + Math.floor((Math.random() * 10) + 1)+".cl";
+
+            var client_id = "lRRdl5_hDlU";
+            var client_secret = "hFiftBXEW3g";
+            var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&client_id=" + client_id + "&client_secret=" +
+            client_secret + "&uniqueid=" + uniqueid;
+            alert(req_url);
+
+            jQuery.ajax({
+            type: "GET",
+            url: req_url,
+            dataType: 'jsonp',
+            cache: false,
+            jsonpCallback: "getdata",
+            success: function(response, status, xhr) {
+                access_token = response.access_token;
+                alert(access_token);
+                if (access_token) {
+                    
+
+                    //var result = document.getElementById("result");
+                    //result.innerHTML = "access_token: " + response.access_token + " expires_in: " + response.expires_in;
+
+
+                    var options = {
+                        mode: "sandbox", 
+                        client_id: client_id, //
+                        access_token: access_token,
+                        invalid_token: function(event) {
+                        //Triggered when the access token is expired or invalid
+                            alert("Access Token expired for session id: " + event.session_id);
+                        }
+                    };
+
+                    Moxtra.init(options);
+
+                } else {
+                    alert(response.code + " " + response.message);
+                }
+            },
+            error: function(xhr, status, response) {
+                // error
+                alert(JSON.parse(response.responseText));
+            }
+        });
+    }
+
+           /*****************************************************************************************************************************/ 
+           //var access_token="Hi";
+            /*if (access_token) {
+                // Initialize Moxtra SDK Object
+                var options = {
+                    mode: "sandbox", 
+                    client_id: client_id, //
+                    access_token: access_token,
+                    invalid_token: function(event) {
+                        //Triggered when the access token is expired or invalid
+                        alert("Access Token expired for session id: " + event.session_id);
+                    }
+                };
+                Moxtra.init(options);
+            }
+            else {
+                //Authenticate and get access token for the user before proceeding further
+                console.log ("No access token found");
+            }*/
+
+        
+
+        function start_meet() {
+            
+            var meet_options = {
+                iframe: true, //To open the meet in the same window within an iFrame.
+                // tab: true, //To open the meet in a new browser tab, N/A if iframe option is set to true.
+                tagid4iframe: "meet-container", //ID of the HTML tag within which the Meet window will show up. Refer https://developer.grouphour.com/moxo/docs-js-sdk/#meet
+                iframewidth: "1000px",
+                iframeheight: "750px",
+                extension: { 
+                    "show_dialogs": { "meet_invite": true } 
+                },
+                start_meet: function(event) {
+                    console.log("Meet Started - session_id: "+event.session_id+"session_key: "+event.session_key);
+                    //alert("Session Id" + event.session_id);
+                    //Your application server can upload files to meet using the session_id and session_key
+                    session_id=event.session_id;
+                    session_key=event.session_key;
+                    //alert(session_id);
+           // alert(session_key);
+                   uploadMeetFile(access_token,session_id,session_key);
+                },
+                error: function(event) {
+                    console.log("error code: " + event.error_code + " message: " + event.error_message);
+                },
+                end_meet: function(event) {
+                    console.log("Meet Ended");
+                }
+            };
+            
+            Moxtra.meet(meet_options);
+        }
+
+
+        uploadMeetFile = function(access_token,session_id,session_key) {
+
+        var access_token = access_token;
+        if (!access_token) {
+            alert("You have to enter an access_token value!");
+            return false;
+        }
+
+        var session_id = session_id;
+        if (!session_id) {
+            alert("You have to enter a session Id!");
+            return false;
+        }
+
+        var session_key = session_key;
+        if (!session_key) {
+            alert("You have to enter a session Key!");
+            return false;
+        }
+
+        
+        
+        /*var file_path = document.getElementById("file_path");
+        if (!file_path.value) {
+            alert("You have to input a File Path!");
+            return false;
+        }*/
+
+        var pic = document.getElementsByName('pic[]');
+        var file_path=null;
+
+    var len = pic.length;
+    var count=0;
+    for (var i=0; i<len; i++) {
+        if(pic[i].checked)
+        {
+            file_path=pic[i].value;
+
+
+        var req_url = "http://localhost:8080/apiutil/api?action=uploadFileToMeet&session_id=" + encodeURIComponent(session_id) + "&session_key=" + encodeURIComponent(session_key) +
+            "&file_path=" + encodeURIComponent(file_path);
+            alert(req_url);
+
+        jQuery.ajax({
+            type: "GET",
+            url: req_url,
+            dataType: 'jsonp',
+            cache: false,
+            jsonpCallback: "getdata",
+            success: function(response, status, xhr) {
+
+                if (response.message) {
+                    alert(response.code + " " + response.message);
+                } else {
+                    var result = document.getElementById("result");
+
+                    result.innerHTML = response.code;
+                }
+            },
+            error: function(xhr, status, response) {
+                // error
+                alert(JSON.parse(response.responseText));
+            }
+        });
+    } //end of If
+   } //end of for
+};
+</script>
+
+        
+            
+    </head>
+    <body onload="getToken()">
+
+        <form name = "fileinfo" action="javascript:start_meet()">
+            Select files to upload: <img src="/img/s1.jpeg" name="s1.jpeg" width="160" height="100" style="width:160px:height:100px;"/><input class="cbox" type="checkbox" name="pic[]" value="/temp/s1.jpeg" id="file_path"/><label>picture 1</label>
+
+            <img src="/img/s2.jpeg" width="160" height="100" style="width:160px:height:100px;"/><input class="cbox" type="checkbox" name="pic[]" value="/temp/s2.jpeg" id="file_path"/>
+
+            <img src="/img/s3.jpeg" width="160" height="100" style="width:160px:height:100px;"/><input class="cbox" type="checkbox" name="pic[]" value="/temp/s3.jpeg" id="file_path"/>
+
+            <img src="/img/s4.jpeg" width="160" height="100" style="width:160px:height:100px;"/><input class="cbox" type="checkbox" name="pic[]" value="/temp/s4.jpeg" id="file_path"/>
+
+            <img src="/img/s5.png" width="160" height="100" style="width:160px:height:100px;"/><input class="cbox" type="checkbox" name="pic[]" value="/temp/s5.png" id="file_path"/>
+
+            <input class="cbox" type="checkbox" name="pic[]" value="/temp/hi.pdf" id="file_path" /><label>Hi.pdf</label>
+
+
+            <input type="submit" value="Start Moxtra Meet">
+        </form>
+        <!-- <h3><a id="getToken" href="javascript:start_meet();">Moxtra Meet</a></h3> -->
+        <div id="meet-container"></div>
+    </body>
+</html>

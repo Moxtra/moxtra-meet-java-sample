@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <!-- Include Moxtra JavaScript Library -->
+        <script type="text/javascript" charset="utf-8" src="https://www.moxtra.com/api/js/jquery-1.8.1.min.js"></script>
+        <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+
+    <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="css/navbar-fixed-top.css">
+
+    <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        
+        <!-- Authenticate/Initialize and get the "Access Token" for the user -->
+        <!-- Refer to the doc at https://developer.moxtra.com/docs/docs-oauth/#uniqueid to authenticate user based on UniqueID Method -->
+        <!-- For other authentication methods and overview refer to the doc at https://developer.moxtra.com/docs/docs-authentication/ -->
+        <!-- In this example user is authenticated and access token is passed as a URL parameter -->
+
+        <script src="js/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+    <!-- Form JavaScript -->
+        <script src="js/jqBootstrapValidation.js"></script>
+
+    <!-- Other JavaScript -->
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+        <script src="js/php.js"></script>
+        <script type="text/javascript" >
+
+          
+ 
+            
+
+            //This function authenticates the user and returns the access token   
+            getToken = function()
+            {
+               var uniqueid = Math.floor((Math.random() * 10) + 1); // This can be any Unique value.
+
+                var client_id = "lRRdl5_hDlU"; // REPLACE THIS WITH YOUR CLIENT_ID"
+                var client_secret = "hFiftBXEW3g"; // REPLACE THIS WITH YOUR CLIENT_SECRET"
+                var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&client_id=" + client_id + "&client_secret=" +
+                client_secret + "&uniqueid=" + uniqueid;
+
+                jQuery.ajax({
+                    type: "GET",
+                    url: req_url,
+                    dataType: 'jsonp',
+                    cache: false,
+                    jsonpCallback: "getdata",
+                    success: function(response, status, xhr) {
+                        access_token = response.access_token;
+                    
+                        if (access_token) {
+                        
+
+                        //var result = document.getElementById("result");
+                        //result.innerHTML = "access_token: " + response.access_token + " expires_in: " + response.expires_in;
+
+
+                            var options = {
+                                mode: "sandbox", 
+                                client_id: client_id, //
+                                access_token: access_token,
+                                invalid_token: function(event) {
+                            //Triggered when the access token is expired or invalid
+                                alert("Access Token expired for session id: " + event.session_id);
+                                }
+                            };
+
+                            Moxtra.init(options);
+
+                        } 
+                        else {
+                            alert(response.code + " " + response.message);
+                        }
+                    },
+                    error: function(xhr, status, response) {
+                    // error
+                        alert(JSON.parse(response.responseText));
+                    }
+                });
+            }
+
+
+            // This function prepares the options for Moxtra Meet SDK and calls it.
+
+            function start_meet() {
+                
+                var meet_options = {
+                    iframe: false, //To open the meet in the same window in a different iFrame.
+                    // tab: true, //To open the meet in a new browser tab, N/A if iframe option is set to true.
+                    tagid4iframe: "meet-container", //ID of the HTML tag within which the Meet window will show up. Refer https://developer.grouphour.com/moxo/docs-js-sdk/#meet
+                    iframewidth: "1000px",
+                    iframeheight: "750px",
+                    extension: { 
+                        "show_dialogs": { "meet_invite": true } 
+                    },
+                    start_meet: function(event) {
+                        console.log("Meet Started - session_id: "+event.session_id+"session_key: "+event.session_key);
+
+                        //Your application server can upload files to meet using the session_id and session_key
+                        var session_id=event.session_id;
+                        var session_key=event.session_key;
+            
+                       uploadMeetFile(access_token,session_id,session_key);
+                    },
+                    error: function(event) {
+                        console.log("error code: " + event.error_code + " message: " + event.error_message);
+                    },
+                    end_meet: function(event) {
+                        console.log("Meet Ended");
+                    }
+                };
+                
+                Moxtra.meet(meet_options);
+            }
+
+
+
+            // This function constructs the URL to upload files to the meet and calls the Java API uploadFileToMeet to upload the selected files.
+
+            uploadMeetFile = function(access_token,session_id,session_key) {
+
+                var access_token = access_token;
+                if (!access_token) {
+                    alert("You have to enter an access_token value!");
+                    return false;
+                }
+
+                var session_id = session_id;
+                if (!session_id) {
+                    alert("You have to enter a session Id!");
+                    return false;
+                }
+
+                var session_key = session_key;
+                if (!session_key) {
+                    alert("You have to enter a session Key!");
+                    return false;
+                }
+
+                var pic = document.getElementsByName('pic[]');
+                var file_path=null;
+
+                var len = pic.length;
+                var count=0;
+                for (var i=0; i<len; i++) {
+                    if(pic[i].checked)
+                    {
+                        file_path=pic[i].value;
+
+
+                        var req_url = "http://localhost:8080/apiutil/api?action=uploadFileToMeet&session_id=" + encodeURIComponent(session_id) + "&session_key=" + encodeURIComponent(session_key) +
+                            "&file_path=" + encodeURIComponent(file_path);
+                           
+
+                        jQuery.ajax({
+                            type: "GET",
+                            url: req_url,
+                            dataType: 'jsonp',
+                            cache: false,
+                            jsonpCallback: "getdata",
+                            success: function(response, status, xhr) {
+
+                                if (response.message) {
+                                    alert(response.code + " " + response.message);
+                                } else {
+                                    var result = document.getElementById("result");
+
+                                    result.innerHTML = response.code;
+                                }
+                            },
+                            error: function(xhr, status, response) {
+                                // error
+                                alert(JSON.parse(response.responseText));
+                            }
+                        });
+                    } //end of If
+               } //end of for
+            };
+        </script>
+
+        
+            
+    </head>
+
+    <body onload="getToken()" style="background-color:lightgrey">
+
+        <form name = "fileinfo" action="javascript:start_meet()">
+            <b><em><font size= "20" face="verdana" color="green"><p align="left">Select files to upload:</p></font><em><b> <br>
+            <ul class="checkbox-grid">
+                <li>
+                    <label><font size= "4" face="verdana"> Hi.pdf  </font></label><input class="cbox" type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
+                </li>
+
+            </ul>
+
+            <ul class="checkbox-grid">
+                <li>
+                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" color="red" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
+                </li>
+            </ul>
+
+            <ul class="checkbox-grid">
+                <li>
+                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
+                </li>
+            </ul>
+
+            <ul class="checkbox-grid">
+                <li>
+                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" /><label for="cbox"></label>
+                </li>
+            </ul>
+
+    
+        <input class="button-grid" type="submit" name="btnSubmit" value="Start Moxtra Meet" style="height:50px; width:200px;" align="left"/>
+        </form>
+
+        <div id="meet-container"></div>
+
+    </body>
+
+</html>
