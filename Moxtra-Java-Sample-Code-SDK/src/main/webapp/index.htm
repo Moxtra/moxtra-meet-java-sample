@@ -38,17 +38,20 @@
 
           
  
-            
+            var access_token;
 
             //This function authenticates the user and returns the access token   
             getToken = function()
             {
                var uniqueid = Math.floor((Math.random() * 10) + 1); // This can be any Unique value.
 
+
                 var client_id = "lRRdl5_hDlU"; // REPLACE THIS WITH YOUR CLIENT_ID"
-                var client_secret = "hFiftBXEW3g"; // REPLACE THIS WITH YOUR CLIENT_SECRET"
-                var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&client_id=" + client_id + "&client_secret=" +
-                client_secret + "&uniqueid=" + uniqueid;
+                //var access_token;
+                //var client_secret = "hFiftBXEW3g"; // REPLACE THIS WITH YOUR CLIENT_SECRET"
+                //var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&client_id=" + client_id + "&client_secret=" + client_secret + "&uniqueid=" + uniqueid;
+
+                var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;
 
                 jQuery.ajax({
                     type: "GET",
@@ -58,7 +61,7 @@
                     jsonpCallback: "getdata",
                     success: function(response, status, xhr) {
                         access_token = response.access_token;
-                    
+
                         if (access_token) {
                         
 
@@ -199,26 +202,26 @@
             <b><em><font size= "20" face="verdana" color="green"><p align="left">Select files to upload:</p></font><em><b> <br>
             <ul class="checkbox-grid">
                 <li>
-                    <label><font size= "4" face="verdana"> Hi.pdf  </font></label><input class="cbox" type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
+                    <label><font size= "4" face="verdana"> Hi.pdf  </font></label><input class="cbox" type="checkbox" align="middle" name="pic[]" value="/temp/one.pdf" id="file_path" />
                 </li>
 
             </ul>
 
             <ul class="checkbox-grid">
                 <li>
-                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" color="red" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
+                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" color="red" align="middle" name="pic[]" value="/temp/four.pdf" id="file_path" />
                 </li>
             </ul>
 
             <ul class="checkbox-grid">
                 <li>
-                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
+                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" align="middle" name="pic[]" value="/temp/two.pdf" id="file_path" />
                 </li>
             </ul>
 
             <ul class="checkbox-grid">
                 <li>
-                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" /><label for="cbox"></label>
+                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" align="middle" name="pic[]" value="/temp/three.pdf" id="file_path" /><label for="cbox"></label>
                 </li>
             </ul>
 
