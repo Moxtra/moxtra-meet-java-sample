@@ -1,4 +1,4 @@
-##Java Sample Code for Moxtra APIs
+Java Sample Code for Moxtra APIs
 ================================
 
 This repository contains Java code sample to launch a real-time meeting and upload the selected files to it using Moxtra SDKs and APIs.
