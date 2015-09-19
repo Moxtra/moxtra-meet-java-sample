@@ -82,13 +82,10 @@ public class APIServlet extends HttpServlet {
 			throws MoxtraAPIUtilException, IOException {
 
 		String client_id = request.getParameter("client_id");
-		String client_secret = request.getParameter("client_secret");
+		String client_secret = "hFiftBXEW3g";
 		String uniqueid = request.getParameter("uniqueid");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
-
-        System.out.println("Client Id " + client_id);
-        System.out.println("Client secret " + client_secret);
 
 		String jsonString = null;
 		try {
@@ -132,11 +129,6 @@ public class APIServlet extends HttpServlet {
 		String jsonString = null;
 		try {
 			File uploadFile = new File(file_path);
-			System.out.println("Inside try");
-			//System.out.println("Access token " + access_token);
-		System.out.println("session_id " + session_id);
-		System.out.println("session_key " + session_key);
-		System.out.println("file_path " + file_path);
 		
 			jsonString = MoxtraAPIUtil.uploadFileToMeet(session_id, session_key, uploadFile);
 			
