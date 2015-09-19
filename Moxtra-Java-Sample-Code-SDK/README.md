@@ -59,9 +59,13 @@ Please feel free to clone the repository and follow the steps below.
 
 
 Here we are using a web page to drive server operations. The web page performs the following operations:
+
 **1. Authenticate the user by generating the access token**
+
 **2. Initialize the user**
+
 **3. Start a Moxtra meet**
+
 **4. Upload selected files to meet**
 
 The upload file operations are to get files from server, not client. In other words, server codes are clients to Moxtra REST API Service. 
@@ -78,7 +82,7 @@ The upload file operations are to get files from server, not client. In other wo
 				getToken = function()
 	            {
 	               	var uniqueid = Math.floor((Math.random() * 10) + 1); // You can replace this with any Unique value of your own.
-					var client_id = "INPUT YOUR CLIENT_ID HERE";
+					**var client_id = "INPUT YOUR CLIENT_ID HERE";**
 	                var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;
 
 
@@ -88,7 +92,7 @@ The upload file operations are to get files from server, not client. In other wo
 				throws MoxtraAPIUtilException, IOException {
 
 			String client_id = request.getParameter("client_id");
-			String client_secret = "INPUT_YOUR_CLIENT_SECRET";
+			**String client_secret = "INPUT_YOUR_CLIENT_SECRET";**
 			String uniqueid = request.getParameter("uniqueid");
 			String firstname = request.getParameter("firstname");
 			String lastname = request.getParameter("lastname");
@@ -101,7 +105,7 @@ The upload file operations are to get files from server, not client. In other wo
 			Sending the Request parameters to the getAccessTokenAPI Java API:
 			_________________________________________________________________
 			Once the CLIENT_ID is input in the index.htm, we will construct the URL to fetch the data from the application server:
-				var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;
+				**var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;**
 
 			Now we will make an AJAX call to send this request to the JAVA API on the App server to autenticate the user:
 				jQuery.ajax({
@@ -131,7 +135,7 @@ The upload file operations are to get files from server, not client. In other wo
                                 }
                             };
 
-                            Moxtra.init(options); // Initialise the moxtra user
+                            **Moxtra.init(options);** // Initialise the moxtra user
 
                         } 
 
@@ -173,7 +177,7 @@ The upload file operations are to get files from server, not client. In other wo
 		                    }
 		                };
 		                
-		                Moxtra.meet(meet_options);
+		               **Moxtra.meet(meet_options);** //JAVA SDK call for Moxtra meet
 		            }
 
 
