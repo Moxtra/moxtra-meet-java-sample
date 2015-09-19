@@ -15,7 +15,7 @@ Please feel free to clone the repository and follow the steps below.
 
 
 ##Register your App:
-	After ([registering your app with Moxtra]), you will be provided with a unique client id and client secret key that is used to initialize the Moxtra SDK.
+	After [registering your app with Moxtra](https://developer.moxtra.com/nextapps), you will be provided with a unique client id and client secret key that is used to initialize the Moxtra SDK.
 
 
 ##Authenticating your App:
