@@ -8,17 +8,17 @@ This repository contains Java code sample to launch a real-time meeting and uplo
 Please feel free to clone the repository and follow the steps below.
 
 
-# Setup:
+### Setup:
 
-###Clone the sample project from github:
+####Clone the sample project from github:
 	git clone https://github.com/Moxtra/xxxxxx
 
 
-###Register your App:
+####Register your App:
 	After [registering your app with Moxtra](https://developer.moxtra.com/nextapps), you will be provided with a unique client id and client secret key that is used to initialize the Moxtra SDK.
 
 
-###Authenticating your App:
+####Authenticating your App:
 	You'll need your CLIENT_ID and CLIENT_SECRET to authenticate your app and get your access_token.
 
 	Go to Moxtra-Java-Sample-Code-SDK/src/main/webapp.
@@ -34,7 +34,7 @@ Please feel free to clone the repository and follow the steps below.
 		String client_secret = "INPUT YOUR CLIENT_SECRET";
 
 
-###Running your App:
+####Running your App:
 	Now you're all set to run your App:
 
 	Configure an application server like Tomcat or Weblogic etc. Please install maven if you haven't done it before.
@@ -55,7 +55,7 @@ Please feel free to clone the repository and follow the steps below.
 
 
 
-#Step by Step tutorial:
+###Step by Step tutorial:
 
 
 Here we are using a web page to drive server operations. The web page performs the following operations:
@@ -70,7 +70,7 @@ The upload file operations are to get files from server, not client. In other wo
   + The server operations are handled by /src/main/java/com/moxtra/util/MoxtraAPIUtil.java
 
 
-###Step 1: Authenticate the user by generating the access token.
+####Step 1: Authenticate the user by generating the access token.
 		The Core API uses Simple Single Sign On (SSO), but the Java SDK will take care of most of it so you don't have to start from scratch. 
 
 		You'll need to provide your CLIENT_ID inside the getToken function in index.htm
@@ -116,7 +116,7 @@ The upload file operations are to get files from server, not client. In other wo
 	        This would return the access_token on successful authentication. 
 
 
-###Step 2: Initilaize the user:
+####Step 2: Initilaize the user:
         Using the access_token generated in the previous user, we initialize the user:
 
         	if (access_token) {
@@ -136,7 +136,7 @@ The upload file operations are to get files from server, not client. In other wo
                         } 
 
 
-###Step 3: Start a meet:
+####Step 3: Start a meet:
 		The user is authenticated and initialized onload of the webpage.
 		Now the user clicks on the "Start Moxtra Meet", the start_meet() function gets invoked.
 		In the start_meet() function, the meet_options variable is set with the required parameters to start a moxtra meet.
@@ -178,7 +178,7 @@ The upload file operations are to get files from server, not client. In other wo
 
 
 
-###Step 4: Upload selected files to meet:
+####Step 4: Upload selected files to meet:
 		Once the moxtra meet is started, the user can access the session_id and session_key.
 		Using this data, we now make a call to the the uploadMeetFile(access_token,session_id,session_key) in the index.html
 
