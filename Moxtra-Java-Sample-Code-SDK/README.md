@@ -59,10 +59,10 @@ Please feel free to clone the repository and follow the steps below.
 
 
 Here we are using a web page to drive server operations. The web page performs the following operations:
-1. Authenticate the user by generating the access token.
-2. Initialize the user.
-3. Start a Moxtra meet.
-4. Upload selected files to meet.
+**1. Authenticate the user by generating the access token**
+**2. Initialize the user**
+**3. Start a Moxtra meet**
+**4. Upload selected files to meet**
 
 The upload file operations are to get files from server, not client. In other words, server codes are clients to Moxtra REST API Service. 
 
