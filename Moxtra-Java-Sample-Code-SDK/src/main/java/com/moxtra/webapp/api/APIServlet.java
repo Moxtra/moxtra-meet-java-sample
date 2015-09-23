@@ -77,8 +77,8 @@ public class APIServlet extends HttpServlet {
 	protected void getAccessToken(HttpServletRequest request, HttpServletResponse response)
 			throws MoxtraAPIUtilException, IOException {
 
-		String client_id = request.getParameter("client_id");
-		String client_secret = "hFiftBXEW3g";
+		String client_id = "INPUT_YOUR_CLIENT_ID";
+		String client_secret = "INPUT_YOUR_CLIENT_SECRET";
 		String uniqueid = request.getParameter("uniqueid");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
