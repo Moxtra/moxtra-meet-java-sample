@@ -16,8 +16,9 @@ Please feel free to clone the repository and follow the steps below.
 
 
 ####Register your App:
-	After [registering your app with Moxtra](https://developer.moxtra.com/nextapps) you will be 
-	provided with a unique client id and client secret key that is used to initialize the Moxtra SDK.
+	You can register your Moxtra App here: https://developer.moxtra.com/nextapps. Once you register, 
+	you will be provided with a unique client id and client secret key that is used to initialize 
+	the Moxtra SDK.
 
 
 ####Authenticating your App:
@@ -49,14 +50,16 @@ Please feel free to clone the repository and follow the steps below.
 ####Running your App:
 	Now you're all set to run your App:
 
-	Configure an application server like Tomcat or Weblogic etc. Please install maven if you haven't done it before.
+	Configure an application server like Tomcat or Weblogic etc. Please install maven 
+	if you haven't done it before.
 
 	The required dependencies have already been added in POM.xml
 
 	Go to the same folder as pom.xml and run the following command: "mvn clean install".
 
-	Go to the following folder Moxtra-Java-Sample-Code-SDK/target and copy the .war file in the webapps folder of tomcat 
-	(Tomcat/webapps). You can also create a folder of your own inside the webapps folder and copy the .war file into it (Tomcat/webapps/your_folder/.war)
+	Go to the following folder Moxtra-Java-Sample-Code-SDK/target and copy the .war file 
+	in the webapps folder of tomcat (Tomcat/webapps). You can also create a folder of your 
+	own inside the webapps folder and copy the .war file into it (Tomcat/webapps/your_folder/.war)
 
 	Once you have it deployed (check the /logs dir for any problems), it should be accessible via: http://host:port/your_folder/apiutil/index.html
 
@@ -78,21 +81,24 @@ Here we are using a web page to drive server operations. The web page performs t
 
 **4. Upload selected files to meet**
 
-The upload file operations are to get files from server, not client. In other words, server codes are clients to Moxtra REST API Service. 
+The upload file operations are to get files from server, not client. In other words, 
+server codes are clients to Moxtra REST API Service. 
 
   + The Servlet is handled by /src/main/java/com/moxtra/webapp/api/APIServlet.java
   + The server operations are handled by /src/main/java/com/moxtra/util/MoxtraAPIUtil.java
 
 
 ####Step 1: Authenticate the user by generating the access token.
-		The Core API uses Simple Single Sign On (SSO), but the Java SDK will take care of most of it so you don't have to start from scratch. 
+		The Core API uses Simple Single Sign On (SSO), but the Java SDK will take care 
+		of most of it so you don't have to start from scratch. 
 
 		You'll need to provide your CLIENT_ID inside the getToken function in index.html
 
 				getToken = function()
 	            {
-	               	var uniqueid = Math.floor((Math.random() * 10) + 1); // You can replace this with any Unique value of your own.
-					**var client_id = "INPUT YOUR CLIENT_ID HERE";**
+	               	var uniqueid = "user001"; // You can replace this 
+	               	with any Unique value of your own.
+					var client_id = "INPUT YOUR CLIENT_ID HERE";
 	                var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;
 
 
@@ -102,7 +108,7 @@ The upload file operations are to get files from server, not client. In other wo
 				throws MoxtraAPIUtilException, IOException {
 
 			String client_id = request.getParameter("client_id");
-			**String client_secret = "INPUT_YOUR_CLIENT_SECRET";**
+			String client_secret = "INPUT_YOUR_CLIENT_SECRET";
 			String uniqueid = request.getParameter("uniqueid");
 			String firstname = request.getParameter("firstname");
 			String lastname = request.getParameter("lastname");
@@ -114,10 +120,12 @@ The upload file operations are to get files from server, not client. In other wo
 
 			Sending the Request parameters to the getAccessTokenAPI Java API:
 			_________________________________________________________________
-			Once the CLIENT_ID is input in the index.html, we will construct the URL to fetch the data from the application server:
-				**var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;**
+			Once the CLIENT_ID is input in the index.html, we will construct 
+			the URL to fetch the data from the application server:
+				var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;
 
-			Now we will make an AJAX call to send this request to the JAVA API on the App server to autenticate the user:
+			Now we will make an AJAX call to send this request to the JAVA API 
+			on the App server to autenticate the user:
 				jQuery.ajax({
 	                    type: "GET",
 	                    url: req_url,
@@ -153,11 +161,13 @@ The upload file operations are to get files from server, not client. In other wo
 ####Step 3: Start a meet:
 		The user is authenticated and initialized onload of the webpage.
 		Now the user clicks on the "Start Moxtra Meet", the start_meet() function gets invoked.
-		In the start_meet() function, the meet_options variable is set with the required parameters to start a moxtra meet.
+		In the start_meet() function, the meet_options variable is set with the required 
+		parameters to start a moxtra meet.
 		Now we make a call to Moxtra Javascript SDK to start a meet with the required parameters:
 				Moxtra.meet(meet_options);
 
-		On succesful start of the meet, the Javascript SDK returns the session_id and the session_key of the meet.
+		On succesful start of the meet, the Javascript SDK returns the session_id and 
+		the session_key of the meet.
 		Any other user can be invited to join this meet using the session_key
 		function start_meet() {
 		                
