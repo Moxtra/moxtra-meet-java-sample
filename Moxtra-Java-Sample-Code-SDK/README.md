@@ -50,7 +50,7 @@ Please feel free to clone the repository and follow the steps below.
 	sh startup.sh
 
 	Now open a browser and visit the page on http://localhost:8080/apiutil/index.html. In case you have your own domain,
-	you can visit the page on http://YOUR_DOMIAN_NAME:8080/apiutil/index.html
+	you can visit the page on http://YOUR_DOMIAN_NAME:8080/apiutil/index.htm
  
 
 
