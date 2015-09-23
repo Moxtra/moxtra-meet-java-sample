@@ -25,9 +25,9 @@ Please feel free to clone the repository and follow the steps below.
 
 	Go to Moxtra-Java-Sample-Code-SDK/src/main/webapp.
 	Open index.htm and input your CLIENT_ID as shown below:
-
+		```
 		var client_id = "INPUT YOUR CLIENT_ID"; 
-
+		```
 
 
 	Go to Moxtra-Java-Sample-Code-SDK/src/main/java/com/moxtra/webapp/api
@@ -37,9 +37,11 @@ Please feel free to clone the repository and follow the steps below.
 
 ####Set the path of the folder containing the files to be uploaded:
 	You need to now set the path of the temp folder to your path as shown below:
+		```
 		<input class="cbox" type="checkbox" align="middle" name="pic[]" 
 		value="/Users/sanjayiyer/Documents/Tomcat/webapps/apiutil/temp/sample.pdf" 
 		id="file_path" />
+		```
 
 
 
