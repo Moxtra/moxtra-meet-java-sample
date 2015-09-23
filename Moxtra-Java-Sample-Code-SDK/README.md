@@ -84,7 +84,7 @@ The upload file operations are to get files from server, not client. In other wo
 ####Step 1: Authenticate the user by generating the access token.
 		The Core API uses Simple Single Sign On (SSO), but the Java SDK will take care of most of it so you don't have to start from scratch. 
 
-		You'll need to provide your CLIENT_ID inside the getToken function in index.htm
+		You'll need to provide your CLIENT_ID inside the getToken function in index.html
 
 				getToken = function()
 	            {
@@ -111,7 +111,7 @@ The upload file operations are to get files from server, not client. In other wo
 
 			Sending the Request parameters to the getAccessTokenAPI Java API:
 			_________________________________________________________________
-			Once the CLIENT_ID is input in the index.htm, we will construct the URL to fetch the data from the application server:
+			Once the CLIENT_ID is input in the index.html, we will construct the URL to fetch the data from the application server:
 				**var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;**
 
 			Now we will make an AJAX call to send this request to the JAVA API on the App server to autenticate the user:
