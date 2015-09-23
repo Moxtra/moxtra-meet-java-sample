@@ -46,11 +46,9 @@ public class TestAPIRequest extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
     
-        //suite.addTest(new TestAPIRequest("testUtilGetAccessToken"));
-     //   suite.addTest(new TestAPIRequest("testUtilUploadBinderPage"));
-       suite.addTest(new TestAPIRequest("testUtilUploadFileToMeet"));
-        //suite.addTest(new TestAPIRequest("testUtilCreateBinders"));
-      //  suite.addTest(new TestAPIRequest("testURI"));
+        suite.addTest(new TestAPIRequest("testUtilGetAccessToken"));
+       	suite.addTest(new TestAPIRequest("testUtilUploadFileToMeet"));
+      
         
         return suite;
     }	
@@ -74,7 +72,7 @@ public class TestAPIRequest extends TestCase {
     
     
     
-    /*public void testUtilGetAccessToken() {
+    public void testUtilGetAccessToken() {
 		String client_id = "qdbOpqf6zSI";
 		String client_secret = "kX0hR_Olo-s";
 		String unique_id = "testaa";
@@ -93,29 +91,8 @@ public class TestAPIRequest extends TestCase {
 			e.printStackTrace();
 		}
 			
-    }*/
+    }
     
-    /*public void testUtilUploadBinderPage() {
-    	String access_token = "LOQwMgAAAUn0UIT6AACowFV0a2ozWUM1QnhSSENDYXE5d2lkUDY3IAAAAANUdG1YU3RjSDhhcExia3ZNVE5MZW1EMmx3RC1XN0VBNUpz";
-    	String binder_id = "BAGUChIRH7P7eBdR9h9nyR5";
-    	
-    	
-    	try {
-    	
-    		String file = "c:/tmp/如果需要 SAML2Util.pdf";
-    		
-    		File uploadFile = new File(file);
-    		
-    		String result = MoxtraAPIUtil.uploadBinderPage(binder_id, uploadFile, access_token);
-    		
-    		System.out.println("response: " + result);
-    		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	
-    	
-    }*/
     
     public void testUtilUploadFileToMeet() {
     	String access_token = "oHkzMgAAAU_SQXi3AACowFVIeEFXWHlkYVk4MXN2cFNodlVGUVIxIAAAAANUVEdQc1BQYVoySzd2Zkd6akZGaDdpQ2xSUmRsNV9oRGxV";
@@ -131,30 +108,10 @@ public class TestAPIRequest extends TestCase {
     		
     		System.out.println("response: " + result);
     		
-		} catch (MoxtraAPIUtilException e) {
+	} catch (MoxtraAPIUtilException e) {
 			e.printStackTrace();
-		}
+	  }
     	
     }
     
-	/*public void testUtilCreateBinders() {
-		
-		String access_token = "czkzMgAAAU28KsFKAACowFVlSWswdXFCWDBhSllhY1g4U3Z3YWYxIAAAAANUeUxacGRPcTQxSzdCV0o0VHMyQzdpN3FkYk9wcWY2elNJ";
-		try {
-
-			String content = "{\"name\":\"my test binderx\"}";
-
-			String result = MoxtraAPIUtil.createBinder(content, access_token);
-			
-			System.out.println(result);
-			           
-  		} catch (Exception e) {
-  			// any exception
-  			logger.error("Error: " + e.getMessage());
-  			
-  			e.getStackTrace();
-  		}		
-
-	}*/
-	
 }
