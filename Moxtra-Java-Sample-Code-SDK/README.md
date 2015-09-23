@@ -24,15 +24,16 @@ Please feel free to clone the repository and follow the steps below.
 	You'll need your CLIENT_ID and CLIENT_SECRET to authenticate your app and get your access_token.
 
 	Go to Moxtra-Java-Sample-Code-SDK/src/main/webapp.
-	Open index.htm and input your CLIENT_ID as shown below:
+	Open index.html and input your CLIENT_ID as shown below:
 		
 		var client_id = "INPUT YOUR CLIENT_ID"; 
 		
 
 
 	Go to Moxtra-Java-Sample-Code-SDK/src/main/java/com/moxtra/webapp/api
-	Open APIServlet.java and locate the getAccessToken() method and input your CLIENT_SECRET as shown below:
+	Open APIServlet.java and locate the getAccessToken() method and input your CLIENT_ID and CLIENT_SECRET as shown below:
 
+		String client_id = "INPUT YOUR CLIENT_ID";
 		String client_secret = "INPUT YOUR CLIENT_SECRET";
 
 ####Set the path of the folder containing the files to be uploaded:
