@@ -1,7 +1,8 @@
 Java Sample Code for Moxtra APIs
 ================================
 
-This repository contains Java sample code to launch a real-time meeting and upload the selected files to it using Moxtra SDKs and APIs.
+This repository contains Java sample code to launch a real-time meeting and 
+upload the selected files to it using Moxtra SDKs and APIs.
 
 
 
@@ -15,7 +16,8 @@ Please feel free to clone the repository and follow the steps below.
 
 
 ####Register your App:
-	After [registering your app with Moxtra](https://developer.moxtra.com/nextapps) you will be provided with a unique client id and client secret key that is used to initialize the Moxtra SDK.
+	After [registering your app with Moxtra](https://developer.moxtra.com/nextapps) you will be 
+	provided with a unique client id and client secret key that is used to initialize the Moxtra SDK.
 
 
 ####Authenticating your App:
@@ -43,14 +45,12 @@ Please feel free to clone the repository and follow the steps below.
 
 	Go to the same folder as pom.xml and run the following command: "mvn clean install".
 
-	Go to the following folder Moxtra-Java-Sample-Code-SDK/target and copy the WAR file and place it in the webapps folder of tomcat 
-	(Tomcat/webapps)
+	Go to the following folder Moxtra-Java-Sample-Code-SDK/target and copy the .war file in the webapps folder of tomcat 
+	(Tomcat/webapps). You can also create a folder of your own inside the webapps folder and copy the .war file into it (Tomcat/webapps/your_folder/.war)
 
-	Now change your directory to Tomcat/bin from a terminal or cmd and start your Tomcat server using the following command:
-	sh startup.sh
+	Once you have it deployed (check the /logs dir for any problems), it should be accessible via: http://host:port/your_folder/apiutil/index.htm
 
-	Now open a browser and visit the page on http://localhost:8080/apiutil/index.htm. In case you have your own domain,
-	you can visit the page on http://YOUR_DOMIAN_NAME:8080/apiutil/index.htm
+	For example if you are running your app from localhost then visit the page on http://localhost:8080/apiutil/index.htm.
  
 
 
