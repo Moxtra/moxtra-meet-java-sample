@@ -22,11 +22,7 @@ public class APIServlet extends HttpServlet {
 	  /**
 	   * The doGet or doPost method handles
 	   * 1. getAccessToken
-	   * 2. uploadUserPicture
-	   * 3. createBinder 
-	   * 4. uploadBinderCover
-	   * 5. uploadBinderPage
-	   * 6. uploadFileToMeet
+	   * 2. uploadFileToMeet
 	   * 
 	   * based on action
 	   * 
