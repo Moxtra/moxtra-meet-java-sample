@@ -49,7 +49,7 @@ Please feel free to clone the repository and follow the steps below.
 	Now change your directory to Tomcat/bin from a terminal or cmd and start your Tomcat server using the following command:
 	sh startup.sh
 
-	Now open a browser and visit the page on http://localhost:8080/apiutil/index.html. In case you have your own domain,
+	Now open a browser and visit the page on http://localhost:8080/apiutil/index.htm. In case you have your own domain,
 	you can visit the page on http://YOUR_DOMIAN_NAME:8080/apiutil/index.htm
  
 
