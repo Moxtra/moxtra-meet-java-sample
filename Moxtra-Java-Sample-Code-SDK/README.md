@@ -9,19 +9,19 @@ upload the selected files to it using Moxtra SDKs and APIs.
 Please feel free to clone the repository and follow the steps below.
 
 
-## Setup:
+## Setup
 
-## Clone the sample project from github:
+## Clone the sample project from github
 	git clone https://github.com/Moxtra/xxxxxx
 
 
-## Register your App:
+## Register your App
 	You can register your Moxtra App here: https://developer.moxtra.com/nextapps. Once you register, 
 	you will be provided with a unique client id and client secret key that is used to initialize 
 	the Moxtra SDK.
 
 
-## Authenticating your App:
+## Authenticating your App
 	You'll need your CLIENT_ID and CLIENT_SECRET to authenticate your app and get your access_token.
 
 	Go to Moxtra-Java-Sample-Code-SDK/src/main/webapp.
@@ -47,7 +47,7 @@ Please feel free to clone the repository and follow the steps below.
 
 
 
-## Running your App:
+## Running your App
 	Now you're all set to run your App:
 
 	Configure an application server like Tomcat or Weblogic etc. Please install maven 
@@ -68,7 +68,7 @@ Please feel free to clone the repository and follow the steps below.
 
 
 
-## Step by Step tutorial:
+## Step by Step tutorial
 
 
 Here we are using a web page to drive server operations. The web page performs the following operations:
@@ -138,7 +138,7 @@ server codes are clients to Moxtra REST API Service.
 	        This would return the access_token on successful authentication. 
 
 
-####Step 2: Initilaize the user:
+## Step 2: Initilaize the user
         Using the access_token generated in the previous user, we initialize the user:
 
         	if (access_token) {
@@ -158,7 +158,7 @@ server codes are clients to Moxtra REST API Service.
                         } 
 
 
-## Step 3: Start a meet:
+## Step 3: Start a meet
 		The user is authenticated and initialized onload of the webpage.
 		Now the user clicks on the "Start Moxtra Meet", the start_meet() function gets invoked.
 		In the start_meet() function, the meet_options variable is set with the required 
@@ -202,7 +202,7 @@ server codes are clients to Moxtra REST API Service.
 
 
 
-## Step 4: Upload selected files to meet:
+## Step 4: Upload selected files to meet
 		Once the moxtra meet is started, the user can access the session_id and session_key.
 		Using this data, we now make a call to the the uploadMeetFile(access_token,session_id,session_key) in the index.html
 
