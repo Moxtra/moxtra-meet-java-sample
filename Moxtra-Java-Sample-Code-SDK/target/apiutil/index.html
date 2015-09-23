@@ -1,54 +1,37 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Moxtra Meet</title>
 
-        <!-- Include Moxtra JavaScript Library -->
-        <script type="text/javascript" charset="utf-8" src="https://www.moxtra.com/api/js/jquery-1.8.1.min.js"></script>
-        <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs"></script>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-    <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="css/navbar-fixed-top.css">
-
-    <!-- Custom Fonts -->
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        
-        <!-- Authenticate/Initialize and get the "Access Token" for the user -->
-        <!-- Refer to the doc at https://developer.moxtra.com/docs/docs-oauth/#uniqueid to authenticate user based on UniqueID Method -->
-        <!-- For other authentication methods and overview refer to the doc at https://developer.moxtra.com/docs/docs-authentication/ -->
-        <!-- In this example user is authenticated and access token is passed as a URL parameter -->
-
-        <script src="js/jquery-1.11.3.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-
-    <!-- Form JavaScript -->
-        <script src="js/jqBootstrapValidation.js"></script>
-
-    <!-- Other JavaScript -->
-        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
-        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
-        <script src="js/php.js"></script>
-        <script type="text/javascript" >
+    <script type="text/javascript" >
 
           
  
-            
+            var access_token;
 
             //This function authenticates the user and returns the access token   
             getToken = function()
             {
-               var uniqueid = Math.floor((Math.random() * 10) + 1); // This can be any Unique value.
+               var uniqueid = "user001"; // This is a unique value that identifies the user in your system.
 
-                var client_id = "lRRdl5_hDlU"; // REPLACE THIS WITH YOUR CLIENT_ID"
-                var client_secret = "hFiftBXEW3g"; // REPLACE THIS WITH YOUR CLIENT_SECRET"
-                var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&client_id=" + client_id + "&client_secret=" +
-                client_secret + "&uniqueid=" + uniqueid;
+
+                var client_id = "INPUT_YOUR_CLIENT_ID"; // REPLACE THIS WITH YOUR CLIENT_ID"
+
+                var req_url = "http://localhost:8080/apiutil/api?action=getAccessToken&uniqueid=" + uniqueid;
 
                 jQuery.ajax({
                     type: "GET",
@@ -58,7 +41,7 @@
                     jsonpCallback: "getdata",
                     success: function(response, status, xhr) {
                         access_token = response.access_token;
-                    
+
                         if (access_token) {
                         
 
@@ -188,46 +171,96 @@
                } //end of for
             };
         </script>
-
-        
-            
-    </head>
-
-    <body onload="getToken()" style="background-color:lightgrey">
-
-        <form name = "fileinfo" action="javascript:start_meet()">
-            <b><em><font size= "20" face="verdana" color="green"><p align="left">Select files to upload:</p></font><em><b> <br>
-            <ul class="checkbox-grid">
-                <li>
-                    <label><font size= "4" face="verdana"> Hi.pdf  </font></label><input class="cbox" type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
-                </li>
-
-            </ul>
-
-            <ul class="checkbox-grid">
-                <li>
-                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" color="red" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
-                </li>
-            </ul>
-
-            <ul class="checkbox-grid">
-                <li>
-                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" />
-                </li>
-            </ul>
-
-            <ul class="checkbox-grid">
-                <li>
-                    <label><font size= "4" face="verdana"> Hi.pdf  </label><input class="cbox" padding-right:"100px"; type="checkbox" align="middle" name="pic[]" value="/temp/hi.pdf" id="file_path" /><label for="cbox"></label>
-                </li>
-            </ul>
-
+  </head>
+  <body onload="getToken()">
     
-        <input class="button-grid" type="submit" name="btnSubmit" value="Start Moxtra Meet" style="height:50px; width:200px;" align="left"/>
-        </form>
 
-        <div id="meet-container"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          
+          <a class="navbar-brand" href="#">Start a Moxtra Meet by uploading a file</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+          </ul>
+    </nav>
 
-    </body>
+    <h2 class="sub-header">Section title</h2>
+          <div class="table-responsive">
+            <form name = "fileinfo" action="javascript:start_meet()">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>File Number</th>
+                  <th>File Name</th>
+                  <th>File Type</th>
+                  <th>Select</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                
+                <tr>
+                  <th></th>
+                  <td>1</td>
+                  <td>Sample.pdf</td>
+                  <td>PDF</td>
+                  <td>  
+                          <class="checkbox-grid">
+                              <input class="cbox" type="checkbox" align="middle" name="pic[]" value="/Users/sanjayiyer/Documents/Tomcat/webapps/apiutil/temp/sample.pdf" id="file_path" />
+                  </td>
+                </tr>
+               
+               <tr>
+                  <th></th>
+                  <td>2</td>
+                  <td>Sample.docx</td>
+                  <td>MS DOC</td>
+                  <td>
+                          <class="checkbox-grid">
+                              <input class="cbox" type="checkbox" align="middle" name="pic[]" value="/Users/sanjayiyer/Documents/Tomcat/webapps/apiutil/temp/sample.doc" id="file_path" />
+                  </td>
+              </tr>
 
+              <tr>
+                  <th></th>
+                  <td>3</td>
+                  <td>Sample.jpeg</td>
+                  <td>Image</td>
+                  <td>
+                          <class="checkbox-grid">
+                              <input class="cbox" type="checkbox" align="middle" name="pic[]" value="/Users/sanjayiyer/Documents/Tomcat/webapps/apiutil/temp/sample.jpeg" id="file_path" />
+                  </td>
+              </tr>
+
+              <tr>
+                  <th></th>
+                  <td>4</td>
+                  <td>Sample.png</td>
+                  <td>Image</td>
+                  <td>
+                          <class="checkbox-grid">
+                              <input class="cbox" type="checkbox" align="middle" name="pic[]" value="/Users/sanjayiyer/Documents/Tomcat/webapps/apiutil/temp/sample.png" id="file_path" />
+                  </td>
+              </tr>
+              </tbody>
+            
+              
+            </table>
+            <div class="row text-center">
+ 
+            <input class="button-grid" type="submit" name="btnSubmit" value="Start Moxtra Meet" style="height:50px; width:200px;"/>
+
+            </div>
+          </form>
+
+
+ 
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.moxtra.com/api/js/moxtra-latest.js" id="moxtrajs"></script>
+  </body>
 </html>
