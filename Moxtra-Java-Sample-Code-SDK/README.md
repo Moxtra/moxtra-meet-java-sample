@@ -35,6 +35,11 @@ Please feel free to clone the repository and follow the steps below.
 
 		String client_secret = "INPUT YOUR CLIENT_SECRET";
 
+####Set the path of the folder containing the files to be uploaded:
+	You need to now set the path of the temp folder to your path as shown below:
+		<input class="cbox" type="checkbox" align="middle" name="pic[]" **value="/Users/sanjayiyer/Documents/Tomcat/webapps/apiutil/temp/one.pdf"** id="file_path" />
+
+
 
 ####Running your App:
 	Now you're all set to run your App:
