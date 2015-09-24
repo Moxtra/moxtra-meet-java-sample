@@ -208,7 +208,7 @@ server codes are clients to Moxtra REST API Service.
 
 
 
-Step 4: Upload selected files to meet
+## Step 4: Upload selected files to meet
 		Once the moxtra meet is started, the user can access the session_id and session_key.
 		Using this data, we now make a call to the the uploadMeetFile(access_token,session_id,session_key) in the index.html
 
