@@ -12,7 +12,7 @@ Please feel free to clone the repository and follow the steps below.
 ## Setup
 
 ## Clone the sample project from github
-	git clone https://github.com/Moxtra/xxxxxx
+	https://github.com/sanjayiyerkudaliprasannakumar/Java-SampleCode-SDK.git
 
 
 ## Register your App
