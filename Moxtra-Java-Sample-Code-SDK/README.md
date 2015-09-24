@@ -53,7 +53,7 @@ Please feel free to clone the repository and follow the steps below.
 	Configure an application server like Tomcat or Weblogic etc. Please install maven 
 	if you haven't done it before.
 
-	The required dependencies have already been added in pom.xml
+	The required dependencies have already been added to pom.xml
 
 	Go to the same folder as pom.xml and run the following command: "mvn clean install".
 
