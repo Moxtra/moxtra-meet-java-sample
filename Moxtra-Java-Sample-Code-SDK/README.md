@@ -58,12 +58,18 @@ Please feel free to clone the repository and follow the steps below.
 	Go to the same folder as pom.xml and run the following command: "mvn clean install".
 
 	Go to the following folder Moxtra-Java-Sample-Code-SDK/target and copy the .war file 
-	in the webapps folder of tomcat (Tomcat/webapps). You can also create a folder of your 
+	in the webapps folder of tomcat (Tomcat/webapps). 
+	
+	You can also create a folder of your 
 	own inside the webapps folder and copy the .war file into it (Tomcat/webapps/your_folder/.war)
 
-	Once you have it deployed (check the /logs dir for any problems), it should be accessible via: http://host:port/your_folder/apiutil/index.html
+	Once you have it deployed (check the /logs dir for any problems), it should be accessible via: http://host:port/{your_folder}/apiutil/index.html, if your .war is in Tomcat/webapps/your_folder/.war
 
-	For example if you are running your app from localhost then visit the page on http://localhost:8080/apiutil/index.html.
+	For example if you are running your app from localhost then visit the page on http://localhost:8080/{your_folder}/apiutil/index.html, if your .war is in Tomcat/webapps/your_folder/.war
+	
+	Otherwise, if your app is in Tomcat/webapps/.war, then you can access your app via:
+		http://localhost:8080/apiutil/index.html
+	
  
 
 
