@@ -138,7 +138,7 @@ server codes are clients to Moxtra REST API Service.
 	        This would return the access_token on successful authentication. 
 
 
-## Step 2: Initilaize the user
+## Step 2: Initialize the user
         Using the access_token generated in the previous user, we initialize the user:
 
         	if (access_token) {
