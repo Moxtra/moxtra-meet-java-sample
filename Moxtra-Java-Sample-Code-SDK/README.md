@@ -159,7 +159,7 @@ server codes are clients to Moxtra REST API Service.
                                 }
                             };
 
-                            **Moxtra.init(options);** // Initialise the moxtra user
+                            Moxtra.init(options); // Initialise the moxtra user
 
                         } 
 
@@ -203,7 +203,7 @@ server codes are clients to Moxtra REST API Service.
 		                    }
 		                };
 		                
-		               **Moxtra.meet(meet_options);** //JAVA SDK call for Moxtra meet
+		               Moxtra.meet(meet_options); //JAVA SDK call for Moxtra meet
 		            }
 
 
