@@ -86,11 +86,6 @@ public class APIServlet extends HttpServlet {
 		String jsonString = null;
 		try {
 			HashMap<String, Object> map = MoxtraAPIUtil.getAccessToken(client_id, client_secret, uniqueid, firstname, lastname);
-
-			// to get it directly
-			//String access_token = (String) map.get(MoxtraAPIUtil.PARAM_ACCESS_TOKEN);
-			//int expires_in = (Integer) map.get(MoxtraAPIUtil.PARAM_EXPIRES_IN);
-
 			ObjectMapper mapper = new ObjectMapper();
 			jsonString = mapper.writeValueAsString(map);
 
@@ -117,11 +112,6 @@ public class APIServlet extends HttpServlet {
 		String session_key = request.getParameter("session_key");
 		String file_path = request.getParameter("file_path");
 
-		//System.out.println("Access token " + access_token);
-		System.out.println("session_id " + session_id);
-		System.out.println("session_key " + session_key);
-		System.out.println("file_path " + file_path);
-		
 		String jsonString = null;
 		try {
 			File uploadFile = new File(file_path);
