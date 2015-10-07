@@ -73,11 +73,11 @@ public class TestAPIRequest extends TestCase {
     
     
     public void testUtilGetAccessToken() {
-		String client_id = "qdbOpqf6zSI";
-		String client_secret = "kX0hR_Olo-s";
-		String unique_id = "testaa";
-		String firstname = "First";
-		String lastname = "Last";
+		String client_id = "INPUT_YOUR_CLIENT_ID";
+		String client_secret = "INPUT_YOUR_CLIENT_ID";
+		String unique_id = "INPUT_YOUR_UNIQUE_ID";
+		String firstname = "INPUT_YOUR_FIRST_NAME";
+		String lastname = "INPUT_YOUR_LAST_NAME";
 
 		try {
 			HashMap<String, Object> map = MoxtraAPIUtil.getAccessToken(client_id, client_secret, unique_id, firstname, lastname);
@@ -95,10 +95,10 @@ public class TestAPIRequest extends TestCase {
     
     
     public void testUtilUploadFileToMeet() {
-    	String access_token = "oHkzMgAAAU_SQXi3AACowFVIeEFXWHlkYVk4MXN2cFNodlVGUVIxIAAAAANUVEdQc1BQYVoySzd2Zkd6akZGaDdpQ2xSUmRsNV9oRGxV";
-    	String session_id = "mxweb-cdeb09af-8dc6-431f-8430-0b7b658235b4";
-    	String session_key = "371489063";
-    	String file = "/temp/hi.pdf";
+    	String access_token = "INPUT_YOUR_ACCESS_TOKEN";
+    	String session_id = "INPUT_YOUR_SESSION_ID";
+    	String session_key = "INPUT_YOUR_SESSION_KEY";
+    	String file = "INPUT_YOUR_FILE_PATH";
     	
     	try {
     		
