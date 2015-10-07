@@ -12,7 +12,7 @@ Please feel free to clone the repository and follow the steps below.
 ## Setup
 
 ## Clone the sample project from github
-	https://github.com/sanjayiyerkudaliprasannakumar/Java-SampleCode-SDK.git
+	https://github.com/Moxtra/moxtra-meet-java-sample.git
 
 
 ## Register your App
